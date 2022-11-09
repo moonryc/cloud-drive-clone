@@ -15,7 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@cloud-drive-clone/frontend/api-types": ["libs/frontend/api-types/src/index.ts"]
+      "@cloud-drive-clone/frontend/api-types": [
+        "libs/frontend/api-types/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
