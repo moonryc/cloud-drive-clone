@@ -50,7 +50,7 @@
       "options": {
         "buildTarget": "frontend:build",
         "hmr": true,
-        "port": 3000
+        "port": 3005
       },
       "configurations": {
         "development": {

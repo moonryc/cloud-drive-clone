@@ -30,7 +30,7 @@ const LoginForm = () => {
   return (
     <div>
       <TextInput
-        id={"username"}
+        name={"username"}
         placeholder={"Username"}
         radius={"md"}
         size={"md"}
@@ -40,7 +40,7 @@ const LoginForm = () => {
         value={formik.values.username}
       />
       <TextInput
-        id={"password"}
+        name={"password"}
         placeholder={"Password"}
         radius={"md"}
         size={"md"}

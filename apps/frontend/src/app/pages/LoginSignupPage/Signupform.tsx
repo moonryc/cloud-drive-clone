@@ -34,7 +34,7 @@ const SignupForm = () => {
   return (
     <div>
       <TextInput
-        id={"email"}
+        name={"email"}
         placeholder={"Email"}
         radius={"md"}
         size={"md"}
@@ -44,7 +44,7 @@ const SignupForm = () => {
         value={formik.values.email}
       />
       <TextInput
-        id={"username"}
+        name={"username"}
         placeholder={"Username"}
         radius={"md"}
         size={"md"}
@@ -54,7 +54,7 @@ const SignupForm = () => {
         value={formik.values.username}
       />
       <TextInput
-        id={"password"}
+        name={"password"}
         placeholder={"Password"}
         radius={"md"}
         size={"md"}
@@ -65,7 +65,7 @@ const SignupForm = () => {
         value={formik.values.password}
       />
       <TextInput
-        id={"verifyPassword"}
+        name={"verifyPassword"}
         placeholder={"Verify Password"}
         radius={"md"}
         size={"md"}

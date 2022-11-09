@@ -3,9 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx run frontend:serve:dev",
-    "build": "nx run build",
-    "test": "nx run test"
+    "start": "nx run frontend:serve:dev"
   },
   "private": true,
   "dependencies": {
@@ -20,11 +18,13 @@
     "@mantine/nprogress": "^5.7.1",
     "@mantine/spotlight": "^5.7.1",
     "@nxext/react": "^14.1.0",
+    "@reduxjs/toolkit": "^1.9.0",
     "core-js": "^3.6.5",
     "embla-carousel-react": "^7.0.5",
     "formik": "^2.2.9",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.3",
     "regenerator-runtime": "0.13.7",
     "static-route-paths": "^0.2.2",
