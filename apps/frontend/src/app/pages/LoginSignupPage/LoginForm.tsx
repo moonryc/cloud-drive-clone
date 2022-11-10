@@ -29,6 +29,7 @@ const LoginForm = () => {
 
   return (
     <div>
+      <h3>Login</h3>
       <TextInput
         name={"username"}
         placeholder={"Username"}
@@ -50,7 +51,7 @@ const LoginForm = () => {
         onBlur={formik.handleBlur}
         value={formik.values.password}
       />
-      <Button radius={"md"} uppercase>Login</Button>
+      <Button uppercase>Login</Button>
     </div>
   );
 };

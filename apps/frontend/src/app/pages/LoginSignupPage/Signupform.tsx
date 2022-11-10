@@ -33,6 +33,7 @@ const SignupForm = () => {
 
   return (
     <div>
+      <h3>Signup</h3>
       <TextInput
         name={"email"}
         placeholder={"Email"}
@@ -75,7 +76,7 @@ const SignupForm = () => {
         type={"password"}
         value={formik.values.verifyPassword}
       />
-      <Button radius={"md"} uppercase>Signup</Button>
+      <Button uppercase>Signup</Button>
     </div>
   );
 };

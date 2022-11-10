@@ -4,11 +4,13 @@ import {useAppSelector} from "../../hooks";
 export type UserValues ={
   isLoggedIn: boolean,
   username:string
+  userId: string,
 }
 
 const initialState: UserValues = {
   isLoggedIn: false,
   username:"",
+  userId:""
 }
 
 export const userSlice = createSlice({
@@ -28,6 +30,8 @@ export const {logoutUser, loginUser } = userSlice.actions
 
 
 
-export const useUserSelector =():UserValues=> useAppSelector((state)=>state.user)
+export const useUserIdSelector =():UserValues["userId"]=> useAppSelector((state)=>state.user.userId)
+export const useUsernameSelector =():UserValues["username"]=> useAppSelector((state)=>state.user.username)
+export const useIsLoggedInSelector =():UserValues["isLoggedIn"]=> useAppSelector((state)=>state.user.isLoggedIn)
 
 export default userSlice.reducer
