@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit"
-import {useAppSelector} from "../../hooks";
+import {useAppSelector} from "../../redux-hooks";
 
 export type UserValues ={
   isLoggedIn: boolean,
