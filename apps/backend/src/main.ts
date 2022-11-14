@@ -6,6 +6,9 @@
 import * as express from 'express';
 import * as path from 'path';
 
+require('cross-fetch/polyfill');
+global.EventSource = require('eventsource')
+
 const app = express();
 
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
