@@ -4,15 +4,15 @@ import {Button, TextInput} from "@mantine/core";
 import * as yup from "yup"
 import {SchemaOf} from "yup";
 import { LoginInput } from "@cloud-drive-clone/frontend/api-types";
+import { useNavigate } from 'react-router-dom';
+import {routes} from "../../../routes";
 
 const LoginYupSchema: SchemaOf<LoginInput> = yup.object({
   username: yup.string().typeError("Invalid DataType").required(),
   password:yup.string().typeError("Invalid Datatype").required()
 })
 
-const onSubmit = (loginInput:LoginInput)=>{
-//   TODO
-}
+
 
 const initialValues: LoginInput = {
   username: "",
@@ -21,6 +21,13 @@ const initialValues: LoginInput = {
 
 const LoginForm = () => {
 
+  const navigate = useNavigate()
+  const onSubmit = (loginInput:LoginInput)=>{
+
+
+    navigate(routes.dashBoard.path)
+  }
+
   const formik = useFormik<LoginInput>({
     initialValues,
     onSubmit,
@@ -28,7 +35,7 @@ const LoginForm = () => {
   })
 
   return (
-    <div>
+    <form onSubmit={formik.handleSubmit}>
       <h3>Login</h3>
       <TextInput
         name={"username"}
@@ -51,8 +58,8 @@ const LoginForm = () => {
         onBlur={formik.handleBlur}
         value={formik.values.password}
       />
-      <Button uppercase>Login</Button>
-    </div>
+      <Button uppercase type={"submit"}>Login</Button>
+    </form>
   );
 };
 
