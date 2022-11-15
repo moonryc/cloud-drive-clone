@@ -8,7 +8,7 @@ import MyFilesPage from "../sub-pages/MyFilesPage";
 import SharedWithOthersPage from "../sub-pages/SharedWithOthersPage";
 import SharedWithMePage from "../sub-pages/SharedWithMePage";
 
-const DashboardPage = () => {
+const HomePage = () => {
 
 
 
@@ -32,4 +32,4 @@ const DashboardPage = () => {
   );
 };
 
-export default DashboardPage;
+export default HomePage;
