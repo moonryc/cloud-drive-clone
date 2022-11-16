@@ -3,10 +3,9 @@ import { useFormik } from 'formik';
 import { Button, TextInput } from '@mantine/core';
 import * as yup from 'yup';
 import { SchemaOf } from 'yup';
-import { LoginInput } from '@cloud-drive-clone/frontend/api-types';
+import { LoginInput, LoginResponse } from '@cloud-drive-clone/frontend/api-types';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../../routes';
-import { devToast } from '../../../utils/devToast';
 
 const LoginYupSchema: SchemaOf<LoginInput> = yup.object({
   username: yup.string().typeError('Invalid DataType').required(),
@@ -19,11 +18,22 @@ const initialValues: LoginInput = {
 };
 
 const LoginForm = () => {
-  const navigate = useNavigate();
-  const onSubmit = (loginInput: LoginInput) => {
-    devToast('USER HAS LOGGED IN');
-    navigate(routes.dashBoard.path);
-  };
+
+  const navigate = useNavigate()
+  const onSubmit = async (loginInput: LoginInput) => {
+    let response = await fetch(`http://localhost:3333/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(loginInput)
+    })
+    const data: LoginResponse = await response.json()
+
+    if (!data.success) {
+      navigate(routes.dashBoard.path)
+    }
+  }
 
   const formik = useFormik<LoginInput>({
     initialValues,
