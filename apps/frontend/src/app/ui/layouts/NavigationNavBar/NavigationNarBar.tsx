@@ -2,7 +2,7 @@ import React, {useMemo} from 'react';
 import {Button, Navbar, NavLink} from "@mantine/core";
 import {useUsernameSelector} from "../../../redux/features/user/userSlice";
 import {useBoolean} from "react-use";
-import UploadModal from "../../components/uploadModal/UploadModal";
+import UploadModal from "../../components/UploadModal/UploadModal";
 import {useLocation, useNavigate} from "react-router-dom";
 import {routes} from "../../../routes";
 

@@ -1,64 +1,63 @@
 import React from 'react';
-import {useFormik} from "formik";
-import {Button, TextInput} from "@mantine/core";
-import * as yup from "yup"
-import {SchemaOf} from "yup";
-import { LoginInput } from "@cloud-drive-clone/frontend/api-types";
+import { useFormik } from 'formik';
+import { Button, TextInput } from '@mantine/core';
+import * as yup from 'yup';
+import { SchemaOf } from 'yup';
+import { LoginInput } from '@cloud-drive-clone/frontend/api-types';
 import { useNavigate } from 'react-router-dom';
-import {routes} from "../../../routes";
+import { routes } from '../../../routes';
+import { devToast } from '../../../utils/devToast';
 
 const LoginYupSchema: SchemaOf<LoginInput> = yup.object({
-  username: yup.string().typeError("Invalid DataType").required(),
-  password:yup.string().typeError("Invalid Datatype").required()
-})
-
-
+  username: yup.string().typeError('Invalid DataType').required(),
+  password: yup.string().typeError('Invalid Datatype').required(),
+});
 
 const initialValues: LoginInput = {
-  username: "",
-  password: "",
-}
+  username: '',
+  password: '',
+};
 
 const LoginForm = () => {
-
-  const navigate = useNavigate()
-  const onSubmit = (loginInput:LoginInput)=>{
-
-
-    navigate(routes.dashBoard.path)
-  }
+  const navigate = useNavigate();
+  const onSubmit = (loginInput: LoginInput) => {
+    devToast('USER HAS LOGGED IN');
+    navigate(routes.dashBoard.path);
+  };
 
   const formik = useFormik<LoginInput>({
     initialValues,
     onSubmit,
-    validationSchema: LoginYupSchema
-  })
+    validationSchema: LoginYupSchema,
+  });
 
   return (
     <form onSubmit={formik.handleSubmit}>
       <h3>Login</h3>
       <TextInput
-        name={"username"}
-        placeholder={"Username"}
-        radius={"md"}
-        size={"md"}
+        name={'username'}
+        placeholder={'Username'}
+        radius={'md'}
+        size={'md'}
         error={formik.touched.username && formik.errors.username}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.username}
       />
       <TextInput
-        name={"password"}
-        placeholder={"Password"}
-        radius={"md"}
-        size={"md"}
-        type={"password"}
+        name={'password'}
+        placeholder={'Password'}
+        radius={'md'}
+        size={'md'}
+        type={'password'}
         error={formik.touched.password && formik.errors.password}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.password}
       />
-      <Button uppercase type={"submit"}>Login</Button>
+      <Button uppercase type={'submit'}>
+        Login
+      </Button>
     </form>
   );
 };
