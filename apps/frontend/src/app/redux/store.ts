@@ -1,10 +1,11 @@
 import {configureStore} from "@reduxjs/toolkit";
 import userReducer from "./features/user/userSlice"
-import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
+import deleteFileReducer from "./features/deleteFile/deleteFileSlice"
 
 export const store = configureStore({
   reducer:{
-    user: userReducer
+    user: userReducer,
+    deleteFile:deleteFileReducer
   }
 })
 
