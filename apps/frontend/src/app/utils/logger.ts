@@ -1,9 +1,17 @@
-import {environment} from "../../environments/environment";
-import {noOpFn} from "./noOpfunction";
+import { environment } from '../../environments/environment';
+import { noOpFn } from './noOpfunction';
 
 type LogObj = Pick<
   typeof console,
-  "log" | "trace" | "debug" | "info" | "warn" | "error" | "table" | "group" | "groupEnd"
+  | 'log'
+  | 'trace'
+  | 'debug'
+  | 'info'
+  | 'warn'
+  | 'error'
+  | 'table'
+  | 'group'
+  | 'groupEnd'
 >;
 
 const blackHoleLogger: LogObj = {
@@ -16,9 +24,10 @@ const blackHoleLogger: LogObj = {
   table: () => noOpFn,
   group: () => noOpFn,
   groupEnd: () => noOpFn,
-}
+};
 
+const loggerInstance: LogObj = environment.production
+  ? blackHoleLogger
+  : console;
 
-const loggerInstance:LogObj = environment.production ? blackHoleLogger : console
-
-export const logger = ():LogObj => loggerInstance;
+export const logger = (): LogObj => loggerInstance;
