@@ -10,6 +10,9 @@ import {expressjwt} from 'express-jwt';
 import path from 'path';
 const PocketBase = require('pocketbase/cjs');
 
+//types
+import { LoginResponse } from "@cloud-drive-clone/frontend/api-types";
+
 require('cross-fetch/polyfill');
 global.EventSource = require('eventsource')
 
@@ -19,7 +22,7 @@ const client = new PocketBase('http://127.0.0.1:8090');
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3005');
   res.setHeader('Access-Control-Allow-Headers', 'Content-type,Authorization');
   next();
 });
@@ -47,16 +50,17 @@ let users = [
 
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
+  console.log(username, password);
   // Use your DB ORM logic here to find user and compare password
   for (let user of users) { // I am using a simple array users which i made above
       if (username == user.username && password == user.password /* Use your password hash checking logic here !*/) {
           //If all credentials are correct do this
           let token = jwt.sign({ id: user.id, username: user.username }, 'keyboard cat 4 ever', { expiresIn: 129600 }); // Sigining the token
           res.json({
-              sucess: true,
+              success: true,
               err: null,
               token
-          });
+          } as LoginResponse);
           break;
       }
       else {
@@ -91,6 +95,6 @@ app.get('/api', async (req, res) => {
 
 const port = process.env.port || 3333;
 const server = app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}/api`);
+  console.log(`Listening at http://localhost:${port}`);
 });
 server.on('error', console.error);
