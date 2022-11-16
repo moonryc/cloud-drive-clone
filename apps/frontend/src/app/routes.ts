@@ -1,10 +1,10 @@
-import { route } from "static-route-paths"
+import { route } from 'static-route-paths';
 
 export const routes = route({
-  root:route(),
-  dashBoard: route("home", {
+  root: route(),
+  home: route('home', {
     sharedWithOthers: route('sharedWithOthers'),
     sharedWithMe: route('sharedWithMe'),
-    }),
-  loginsignup: route("loginSignup")
-})
+  }),
+  loginsignup: route('loginSignup'),
+});
