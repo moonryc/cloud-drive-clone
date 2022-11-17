@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {AppShell, Header,} from "@mantine/core";
 import PageLayout from "../../layouts/PageLayout";
 import NavigationNavBar from "../../layouts/NavigationNavBar/NavigationNarBar";
@@ -9,6 +9,20 @@ import SharedWithOthersPage from "../sub-pages/SharedWithOthersPage";
 import SharedWithMePage from "../sub-pages/SharedWithMePage";
 
 const HomePage = () => {
+
+  useEffect(() => {
+    let apifetch = async () => {
+    let response = await fetch(`http://localhost:3333/api`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    })
+    const data: any = await response.json()
+    console.log(data)
+    }
+    apifetch()
+  }, [])
 
 
 

@@ -3,10 +3,21 @@ export type LoginInput = {
   password: string;
 }
 
+export enum Perm {
+  ADMIN = 'ADMIN',
+  USER = 'USER'
+}
+
+export type User = {
+  id: number|null;
+  name: string|null;
+  perm: Perm|null;
+}
+
 export type LoginResponse = {
   success: boolean;
-  token?: string;
-  userId?: number;
-  error?: string;
+  err: string | null;
+  token?: string | null;
+  user: User;
 }
 

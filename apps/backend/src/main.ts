@@ -11,7 +11,7 @@ import path from 'path';
 const PocketBase = require('pocketbase/cjs');
 
 //types
-import { LoginResponse } from "@cloud-drive-clone/frontend/api-types";
+import { LoginResponse, Perm } from "@cloud-drive-clone/frontend/api-types";
 
 require('cross-fetch/polyfill');
 global.EventSource = require('eventsource')
@@ -30,7 +30,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const jwtMW = expressjwt({
+const auth = expressjwt({
   secret: 'test',
   algorithms: ['HS256'],
 });
@@ -55,27 +55,33 @@ app.post('/login', (req, res) => {
   for (let user of users) { // I am using a simple array users which i made above
       if (username == user.username && password == user.password /* Use your password hash checking logic here !*/) {
           //If all credentials are correct do this
-          let token = jwt.sign({ id: user.id, username: user.username }, 'keyboard cat 4 ever', { expiresIn: 129600 }); // Sigining the token
+          let token = jwt.sign({ id: user.id, username: user.username }, 'test', { expiresIn: 129600 }); // Sigining the token
           res.json({
               success: true,
               err: null,
-              token
+              token,// username userid permissions
+              user: {
+                  id: 1,
+                  name: 'John Doe',
+                  perm: Perm.ADMIN
+              }
           } as LoginResponse);
           break;
       }
       else {
           res.status(401).json({
-              sucess: false,
+              success: false,
               token: null,
-              err: 'Username or password is incorrect'
-          });
+              err: 'Username or password is incorrect',
+              user: {
+                  id: null,
+                  name: null,
+                  perm: null
+              }
+          } as LoginResponse);
       }
   }
 });
-
-// app.get('/', jwtMW /* Using the express jwt MW here */, (req, res) => {
-//   res.send('You are authenticated'); //Sending some response when authenticated
-// });
 
 app.use(function (err, req, res, next) {
   if (err.name === 'UnauthorizedError') { // Send the error rather than to show it on the console
@@ -86,11 +92,12 @@ app.use(function (err, req, res, next) {
   }
 });
 
-app.get('/api', async (req, res) => {
-  const records = await client.records.getFullList('test', 200 /* batch size */, {
-    sort: '-created',
-});
-  res.send(records);
+app.get('/api', auth , async (req, res) => {
+//   const records = await client.records.getFullList('test', 200 /* batch size */, {
+//     sort: '-created',
+// });
+//   res.send(records);
+res.send('success');
 });
 
 const port = process.env.port || 3333;

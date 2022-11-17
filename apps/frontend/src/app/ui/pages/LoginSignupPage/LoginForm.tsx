@@ -32,7 +32,8 @@ const LoginForm = () => {
     })
     const data: LoginResponse = await response.json()
 
-    if (!data.success) {
+    if (data.success) {
+      localStorage.setItem("token", data.token as string)
       navigate(routes.dashBoard.path)
     }
   }
