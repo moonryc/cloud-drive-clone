@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import {AppShell, Header,} from "@mantine/core";
 import PageLayout from "../../layouts/PageLayout";
 import NavigationNavBar from "../../layouts/NavigationNavBar/NavigationNarBar";
-import {routes} from "../../../routes";
 import {Route, Routes} from "react-router-dom";
 import MyFilesPage from "../sub-pages/MyFilesPage";
 import SharedWithOthersPage from "../sub-pages/SharedWithOthersPage";
 import SharedWithMePage from "../sub-pages/SharedWithMePage";
+import DeleteFileModal from "../../components/DeleteFileModal/DeleteFileModal";
 
 const HomePage = () => {
 
@@ -36,6 +36,7 @@ const HomePage = () => {
         main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0] },
       })}
     >
+      <DeleteFileModal/>
     <Routes>
         <Route path={"/"} index element={<MyFilesPage/>}/>
         <Route path={"/sharedWithOthers"} element={<SharedWithOthersPage/>}/>

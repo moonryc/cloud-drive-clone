@@ -5,8 +5,8 @@
   "scripts": {
     "dev:frontend": "nx run frontend:serve:dev",
     "dev:backend": "nx run backend:serve",
-    "pocketbase": "./pocketbase serve",
-    "pb": "./pocketbasewin serve"
+    "mac:pb": "./pocketbase serve",
+    "win:pb": "./pocketbasewin serve"
   },
   "private": true,
   "dependencies": {
@@ -14,7 +14,7 @@
     "@emotion/styled": "11.10.4",
     "@mantine/carousel": "^5.7.1",
     "@mantine/core": "^5.7.1",
-    "@mantine/dropzone": "^5.7.1",
+    "@mantine/dropzone": "^5.7.2",
     "@mantine/hooks": "^5.7.1",
     "@mantine/modals": "^5.7.1",
     "@mantine/notifications": "^5.7.1",
@@ -23,6 +23,7 @@
     "@nxext/react": "^14.1.0",
     "@reduxjs/toolkit": "^1.9.0",
     "body-parser": "^1.20.1",
+    "@tabler/icons": "^1.111.0",
     "core-js": "^3.6.5",
     "cross-fetch": "^3.1.5",
     "embla-carousel-react": "^7.0.5",
